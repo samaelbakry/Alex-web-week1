@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = "https://dummyjson.com";
 
-export async function loginFn(username: string, password: string) {
+export async function loginFn(username, password) {
   try {
     const data = await axios.post(`${BASE_URL}/auth/login` , {
         username,

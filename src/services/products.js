@@ -10,7 +10,7 @@ export async function getProducts() {
     console.log(error);
   }
 }
-export async function getProductById(id:string) {
+export async function getProductById(id) {
   try {
     const data = await axios(`${BASE_URL}/products/${id}`);
     return data;

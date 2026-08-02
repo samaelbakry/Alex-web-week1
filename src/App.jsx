@@ -4,6 +4,8 @@ import Heropage from "./pages/home/Heropage"
 import AuthLayout from "./layout/AuthLayout"
 import Login from "./pages/auth/Login"
 import ProductDetails from "./pages/details/ProductDetails"
+import Categories from "./pages/categories/Categories"
+import CategoriesDetails from "./pages/details/CategoriesDetails"
 
 function App() {
 
@@ -22,7 +24,15 @@ function App() {
       {
         path: "/productDetails/:id",
         element: <ProductDetails />
-      }
+      },
+      {
+        path: "/categories",
+        element: <Categories />
+      },
+      {
+        path: "/categories/:slug",
+        element: <CategoriesDetails/>
+      },
     ]
   },
 {
