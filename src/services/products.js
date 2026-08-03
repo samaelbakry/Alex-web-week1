@@ -18,3 +18,11 @@ export async function getProductById(id) {
     console.log(error);
   }
 }
+export async function searchForProduct(query) {
+  try {
+    const data = await axios(`${BASE_URL}/products/search?q=${query}`);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}

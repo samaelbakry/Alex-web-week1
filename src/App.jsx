@@ -9,6 +9,7 @@ import CategoriesDetails from "./pages/details/CategoriesDetails";
 import ProtectedMainRoutes from "./components/ProtectedRoutes/ProtectedMainRoutes";
 import ProtectedAuthRoutes from "./components/ProtectedRoutes/ProtectedAuthRoutes";
 import Cart from "./pages/cart/Cart";
+import Wishlist from "./pages/wishlist/Wishlist";
 
 function App() {
   const router = createBrowserRouter([
@@ -31,6 +32,10 @@ function App() {
         {
           path:"/cart",
           element: <Cart/>
+        },
+        {
+          path:"/wishList",
+          element: <Wishlist/>
         },
         {
           path: "/productDetails/:id",

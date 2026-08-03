@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Star } from "lucide-react";
 import { getProductById } from "../../services/products";
+import Button from "../../components/ui/Button";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState();
@@ -97,12 +98,9 @@ export default function ProductDetails() {
                   </span>
                 </div>
 
-                <button
-                  type="button"
-                  className="px-6 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-xl shadow-sm transition-colors focus:ring-2 focus:ring-blue-500/20"
-                >
-                  Add to Cart
-                </button>
+                
+                <Button btnType={"button"} btnText={"Add To Wishlist"} btnStyle={"addToWishlist"} />
+                <Button btnType={"button"} btnText={"Add To Cart"} btnStyle={"addToCart"}  />
               </div>
             </div>
           </div>
