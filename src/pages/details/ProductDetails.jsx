@@ -1,8 +1,9 @@
+import { Star } from "lucide-react";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Star } from "lucide-react";
 import { getProductById } from "../../services/products";
-import Button from "../../components/ui/Button";
+import AddToCart from "../../components/addToCart/AddToCart";
+import AddToWishlist from "../../components/addToWishlist/AddToWishlist";
 
 export default function ProductDetails() {
   const [product, setProduct] = useState();
@@ -97,10 +98,8 @@ export default function ProductDetails() {
                     {product?.price != null ? product.price.toFixed(2) : "0.00"}
                   </span>
                 </div>
-
-                
-                <Button btnType={"button"} btnText={"Add To Wishlist"} btnStyle={"addToWishlist"} />
-                <Button btnType={"button"} btnText={"Add To Cart"} btnStyle={"addToCart"}  />
+                <AddToCart item={product}/>
+                <AddToWishlist item={product}/>
               </div>
             </div>
           </div>
