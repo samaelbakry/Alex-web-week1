@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { loginFn } from "../../services/auth";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate()
 
   async function handleLogin() {
     try {
@@ -14,8 +16,9 @@ export default function Login() {
         return;
       }
      const data = await loginFn(userName, password);
-     console.log(data)
-
+     localStorage.setItem("token" , JSON.stringify(data.accessToken))
+     navigate("/")
+     
     } catch (error) {
       console.log(error);
     } finally {

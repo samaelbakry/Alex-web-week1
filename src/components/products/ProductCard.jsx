@@ -1,7 +1,7 @@
 import { Star } from "lucide-react";
 import { Link } from "react-router-dom";
 
-export default function ProductCard({ item }: { item: any }) {
+export default function ProductCard({ item }) {
   return (
     <Link to={`/productDetails/${item.id}`} className="block group">
       <div className="bg-white border border-gray-200 hover:border-blue-300 hover:shadow-lg transition-all duration-300 rounded-2xl p-4 flex flex-col h-full justify-between overflow-hidden">

@@ -4,15 +4,15 @@ import { Star } from "lucide-react";
 import { getProductById } from "../../services/products";
 
 export default function ProductDetails() {
-  const [product, setProduct] = useState<any | null>(null);
+  const [product, setProduct] = useState();
 
   const params = useParams();
-  const fetchProductDetails = async () => {
-    const productData = await getProductById(params.id as string);
-    setProduct(productData?.data ? productData.data : null);
-  };
-
+  
   useEffect(() => {
+    const fetchProductDetails = async () => {
+      const productData = await getProductById(params.id);
+      setProduct(productData?.data ? productData.data : null);
+    };
     fetchProductDetails();
   }, [params.id]);
 
@@ -121,7 +121,7 @@ export default function ProductDetails() {
 
             {product.reviews && product.reviews.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {product.reviews.map((review: any, idx: number) => (
+                {product.reviews.map((review, idx) => (
                   <div
                     key={review.id || idx}
                     className="p-4 bg-stone-50 border border-stone-200/80 rounded-2xl flex flex-col justify-between gap-3 hover:bg-stone-50/80 transition-colors"

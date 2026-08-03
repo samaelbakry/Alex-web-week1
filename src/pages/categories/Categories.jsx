@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { getAllCategories } from "../../services/categories";
 import { Link } from "react-router-dom";
 
 export default function Categories() {
   const [category, setCategory] = useState([]);
-  const fetchCateg = async () => {
-    const data = await getAllCategories();
-    setCategory(data?.data);
-    console.log(data);
-  };
   useEffect(() => {
+    const fetchCateg = async () => {
+      const data = await getAllCategories();
+      setCategory(data?.data);
+      console.log(data);
+    };
     fetchCateg();
   }, []);
 
@@ -27,7 +27,7 @@ export default function Categories() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6">
         {category && category.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-            {category.map((item: any) => (
+            {category.map((item) => (
               <Link
                 to={`/categories/${item.slug}`}
                 key={item.id}
