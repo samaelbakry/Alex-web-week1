@@ -1,14 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { loginFn } from "../../services/auth";
 import { useNavigate } from "react-router-dom";
 import Input from "../../components/ui/Input";
 import Button from "../../components/ui/Button";
 import { EyeClosed, Pencil } from "lucide-react";
+import { AuthContextWrapper } from "../../context/AuthContext";
 
 export default function Login() {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const { login } = useContext(AuthContextWrapper);
   const navigate = useNavigate();
 
   async function handleLogin() {
@@ -19,7 +21,8 @@ export default function Login() {
         return;
       }
       const data = await loginFn(userName, password);
-      localStorage.setItem("token", JSON.stringify(data.accessToken));
+      const user = {username:data?.username , email:data?.email};
+      login(data.accessToken, user);
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -46,12 +49,10 @@ export default function Login() {
         icon={<EyeClosed size={15} color="gray"/>}
       />
       <Button
-        btnStyle={"loginSubmition"}
-        btnType={"submit"}
-        btnText={"Submit"}
-        loading={loading}
-        fn={handleLogin}
-        loadingText={"Sending"}
+        children="Login"
+        disabled={loading}
+        onClick={handleLogin}
+        varient="primary"
       />
     </div>
   );

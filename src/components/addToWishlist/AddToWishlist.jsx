@@ -1,10 +1,28 @@
 import { useContext } from "react";
 import Button from "../ui/Button";
-import { ProductsContextWrapper } from "../../context/AuthContext";
+import {
+  AuthContextWrapper,
+  ProductsContextWrapper,
+} from "../../context/AuthContext";
+import { toast } from "sonner";
 
-export default function AddToWishlist({item}) {
-  const { keepInWishlist } = useContext(ProductsContextWrapper)
+export default function AddToWishlist({ item }) {
+  const { keepInWishlist } = useContext(ProductsContextWrapper);
+  const { isAuthenticated } = useContext(AuthContextWrapper);
+
+  const handleClick = () => {
+    if (!isAuthenticated) {
+      toast.error("Please login fisrt");
+      return;
+    }
+    keepInWishlist(item);
+  };
   return (
-     <Button btnType={"button"} btnText={"Add To Wishlist"} btnStyle={"addToWishlist"} fn={()=>keepInWishlist(item)}/>
-  )
+    <Button
+      children="Add to wishlist"
+      type="button"
+      varient="success"
+      onClick={handleClick}
+    />
+  );
 }

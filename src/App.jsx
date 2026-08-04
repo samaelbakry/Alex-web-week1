@@ -1,14 +1,13 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainLayout from "./layout/MainLayout";
-import Heropage from "./pages/home/Heropage";
+import ProtectedAuthRoutes from "./components/ProtectedRoutes/ProtectedAuthRoutes";
 import AuthLayout from "./layout/AuthLayout";
+import MainLayout from "./layout/MainLayout";
 import Login from "./pages/auth/Login";
-import ProductDetails from "./pages/details/ProductDetails";
+import Cart from "./pages/cart/Cart";
 import Categories from "./pages/categories/Categories";
 import CategoriesDetails from "./pages/details/CategoriesDetails";
-import ProtectedMainRoutes from "./components/ProtectedRoutes/ProtectedMainRoutes";
-import ProtectedAuthRoutes from "./components/ProtectedRoutes/ProtectedAuthRoutes";
-import Cart from "./pages/cart/Cart";
+import ProductDetails from "./pages/details/ProductDetails";
+import Heropage from "./pages/home/Heropage";
 import Wishlist from "./pages/wishlist/Wishlist";
 
 function App() {
@@ -16,9 +15,7 @@ function App() {
     {
       path: "/",
       element: (
-        <ProtectedMainRoutes>
           <MainLayout />
-        </ProtectedMainRoutes>
       ),
       children: [
         {

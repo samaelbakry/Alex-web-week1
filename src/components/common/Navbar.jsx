@@ -1,5 +1,9 @@
 import { Store } from "lucide-react";
-import { Link, NavLink } from "react-router-dom";
+import { useContext } from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { AuthContextWrapper } from "../../context/AuthContext";
+import Button from "../ui/Button";
+import { toast } from "sonner";
 
 const navLinks = [
   { href: "/cart", label: "Cart" },
@@ -8,6 +12,19 @@ const navLinks = [
 ];
 
 export default function Navbar() {
+  const { isAuthenticated , logout  } = useContext(AuthContextWrapper);
+  const navigate = useNavigate()
+
+  const handelLogout = ()=>{
+    logout()
+    navigate("/")
+    toast.success("Account logged out")
+  }
+  const handelLogin = ()=>{
+    navigate("/login")
+  }
+
+
   return (
     <header className="sticky top-0 z-50 bg-stone-100/80 backdrop-blur-md border-b border-stone-200/60 py-3 transition-all">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
@@ -30,6 +47,7 @@ export default function Navbar() {
               {link.label}
             </NavLink>
           ))}
+          {isAuthenticated ? <Button children="Logout" varient="danger" size="sm" onClick={handelLogout} /> : <Button children="Login" varient="secondary" size="sm" onClick={handelLogin}/>}
         </div>
       </nav>
     </header>

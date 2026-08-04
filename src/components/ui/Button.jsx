@@ -1,29 +1,34 @@
 export default function Button({
-  btnStyle,
-  fn,
-  btnType,
-  loading,
-  item,
-  btnText,
-  loadingText,
+ children,
+ onClick,
+ varient = "primary",
+ size="md",
+ loading= false,
+ disabled = false,
+ className="",
+ type="button",
+ item
 }) {
-  const style = {
-    loginSubmition:
-      "bg-blue-600 rounded-xl shadow text-white px-5 py-2 self-end cursor-pointer mt-3",
-    addToCart:
-      "px-6 py-3 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold text-sm rounded-xl shadow-sm transition-colors focus:ring-2 focus:ring-blue-500/20",
-    addToWishlist:
-      "px-6 py-3 bg-green-600 hover:bg-green-700 active:bg-green-800 text-white font-semibold text-sm rounded-xl shadow-sm transition-colors focus:ring-2 focus:ring-green-500/20",
-  };
+  const varients = {
+    primary: "bg-blue-500 hover:bg-blue-700 text-white",
+    secondary: "bg-gray-300 hover:bg-gray-400 text-white",
+    success: "bg-green-500 hover:bg-green-700 text-white",
+    danger: "bg-red-500 hover:bg-red-700 text-white",
+  }
+
+  const sizes ={
+    sm: "px-3 py-1 text-sm",
+    md: "px-5 py-2 text-md",
+    lg: "px-6 py-3 text-lg",
+  }
   return (
     <button
-      type={btnType}
-      className={style[btnStyle]}
-      disabled={loading ? loading : ""}
-      onClick={item ? () => fn(item) : fn}
+      type={type}
+      className={`transition rounded-xl font-semibold cursor-pointer mt-2 ${varients[varient]} ${sizes[size]} ${className}`}
+      disabled={disabled || loading}
+      onClick={item ? () => onClick(item) : onClick}
     >
-      {loading && <>{loading ? loadingText : btnText}</>}
-      {!loading && btnText}
+     {loading ? "Loading" : children}
     </button>
   );
 }

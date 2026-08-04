@@ -1,7 +1,8 @@
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import ProductCard from "../../components/products/ProductCard";
 import { getProducts, searchForProduct } from "../../services/products";
 import Input from "../../components/ui/Input";
+import { AuthContextWrapper } from "../../context/AuthContext";
 import { Search } from "lucide-react";
 
 export default function Heropage() {
@@ -9,6 +10,8 @@ export default function Heropage() {
   const [searchedProd, setSearchedProd] = useState(null);
   const [query, setQuery] = useState("");
   const [loading, setLoading] = useState(false);
+  const { user } = useContext(AuthContextWrapper);
+
 
   const dataToShow = searchedProd ?? products;
 
@@ -58,7 +61,7 @@ export default function Heropage() {
         <header className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between pb-6 border-b border-stone-200">
           <div className="flex flex-col items-start">
             <h1 className="text-3xl font-bold tracking-tight text-stone-900 sm:text-4xl font-sans">
-              Welcome to Shopmarkt
+              Welcome {user ? user.username : ""} to Shopmarkt
             </h1>
             <p className="mt-2 text-base text-stone-600 max-w-xl">
               Your one-stop online shopping destination for top-quality products
